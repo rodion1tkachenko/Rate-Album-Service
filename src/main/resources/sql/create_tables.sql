@@ -1,8 +1,3 @@
-create table if not exists roles(
-        id serial primary key,
-        name varchar(64)
-    );
-
 create table if not exists singer(
      id bigserial primary key,
      name varchar(128) unique not null
@@ -13,8 +8,7 @@ create table if not exists users (
      login varchar(128) unique not null,
     password varchar(64) UNIQUE not null,
     nickname varchar(64),
-    role_id int,
-    FOREIGN KEY (role_id) REFERENCES roles(id)
+    role varchar(64)
     );
 
 
