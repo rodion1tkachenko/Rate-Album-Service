@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     default void saveUser(User user){
         save(user);
     }
+    User getUserById(Long id);
+    User getUserByNickname(String nickname);
 }

@@ -3,6 +3,7 @@ package ru.o0000q.ratealbumservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -22,9 +23,9 @@ public class Album {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Singer singer;
 
-    @OneToMany(mappedBy = "album")
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
 //    @Builder.Default
-    private List<UsersRating>usersRatings;
+    private List<UsersRating>usersRatings=new ArrayList<>();
 
     public void setSinger(Singer singer) {
         this.singer = singer;

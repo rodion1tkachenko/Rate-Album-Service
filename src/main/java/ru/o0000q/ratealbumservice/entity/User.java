@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.o0000q.ratealbumservice.entity.enums.Role;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,9 @@ public class User {
     private String password;
     private String nickname;
     private Role role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 //    @Builder.Default
-    private List<UsersRating>usersRatings;
+    private List<UsersRating>usersRatings=new ArrayList<>();
 }
 
 

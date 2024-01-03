@@ -9,4 +9,5 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     default void saveAlbum(Album album) {
         save(album);
     }
+    Album getAlbumById(Long id);
 }
