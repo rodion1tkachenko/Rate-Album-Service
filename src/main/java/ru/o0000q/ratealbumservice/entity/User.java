@@ -1,11 +1,10 @@
 package ru.o0000q.ratealbumservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.o0000q.ratealbumservice.entity.enums.Role;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -13,6 +12,8 @@ import ru.o0000q.ratealbumservice.entity.enums.Role;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
+@EqualsAndHashCode(exclude = "usersRatings")
+@ToString(exclude = "usersRatings")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +22,9 @@ public class User {
     private String password;
     private String nickname;
     private Role role;
+    @OneToMany(mappedBy = "user")
+//    @Builder.Default
+    private List<UsersRating>usersRatings;
 }
 
 

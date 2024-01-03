@@ -17,16 +17,16 @@ public class RateAlbumServiceApplication {
 //                        .password("123")
 //                        .nickname("vasya123")
 //                .build());
-        var albumRepository=context.getBean(AlbumRepository.class);
-        var singerRepository=context.getBean(SingerRepository.class);
-        var albumService=context.getBean(AlbumService.class);
-        Singer singer =singerRepository.getSingerByName("Young Thug");
-        Album album = Album.builder()
-                .title("Slime World 2")
-                .genre("Hip-Hop")
-                .build();
-        album.setSinger(singer);
-        albumService.saveAlbum(album);
+//        var albumRepository=context.getBean(AlbumRepository.class);
+//        var singerRepository=context.getBean(SingerRepository.class);
+//        var albumService=context.getBean(AlbumService.class);
+//        Singer singer =singerRepository.getSingerByName("Young Thug");
+//        Album album = Album.builder()
+//                .title("Slime World 2")
+//                .genre("Hip-Hop")
+//                .build();
+//        album.setSinger(singer);
+//        albumService.saveAlbum(album);
 //        singerRepository.saveSinger(singer);
     }
 

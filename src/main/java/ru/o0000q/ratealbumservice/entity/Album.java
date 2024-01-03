@@ -3,13 +3,15 @@ package ru.o0000q.ratealbumservice.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
+@Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode(exclude = "singer")
-@ToString(exclude = "singer")
+@EqualsAndHashCode(exclude = {"singer", "usersRatings"})
+@ToString(exclude = {"singer", "usersRatings"})
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,10 @@ public class Album {
     private String genre;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Singer singer;
+
+    @OneToMany(mappedBy = "album")
+//    @Builder.Default
+    private List<UsersRating>usersRatings;
 
     public void setSinger(Singer singer) {
         this.singer = singer;
