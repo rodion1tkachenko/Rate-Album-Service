@@ -1,10 +1,7 @@
 package ru.o0000q.ratealbumservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = "albums")
+@ToString(exclude = "albums")
 public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "singer")
+    @OneToMany(mappedBy = "singer",cascade = CascadeType.ALL, fetch =FetchType.EAGER)
     @Builder.Default
-    private List<Album>albums=new ArrayList<Album>() ;
+    private List<Album>albums=new ArrayList<>() ;
 }

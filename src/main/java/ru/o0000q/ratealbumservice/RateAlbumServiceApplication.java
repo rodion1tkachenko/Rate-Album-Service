@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.entity.Singer;
 import ru.o0000q.ratealbumservice.repository.AlbumRepository;
+import ru.o0000q.ratealbumservice.repository.SingerRepository;
 
 @SpringBootApplication
 public class RateAlbumServiceApplication {
@@ -17,15 +18,16 @@ public class RateAlbumServiceApplication {
 //                        .nickname("vasya123")
 //                .build());
         var albumRepository=context.getBean(AlbumRepository.class);
-        Singer singer = Singer.builder()
-                .name("Young Thug")
-                .build();
+        var singerRepository=context.getBean(SingerRepository.class);
+        var albumService=context.getBean(AlbumService.class);
+        Singer singer =singerRepository.getSingerByName("Young Thug");
         Album album = Album.builder()
-                .title("So much fun")
+                .title("Slime World 2")
                 .genre("Hip-Hop")
                 .build();
         album.setSinger(singer);
-        albumRepository.saveAlbum(album);
+        albumService.saveAlbum(album);
+//        singerRepository.saveSinger(singer);
     }
 
 }

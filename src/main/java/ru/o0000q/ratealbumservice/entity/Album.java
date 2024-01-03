@@ -1,16 +1,15 @@
 package ru.o0000q.ratealbumservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = "singer")
+@ToString(exclude = "singer")
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +17,7 @@ public class Album {
     private String title;
     private byte[] cover;
     private String genre;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Singer singer;
 
     public void setSinger(Singer singer) {
