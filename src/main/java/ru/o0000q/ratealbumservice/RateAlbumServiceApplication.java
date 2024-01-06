@@ -13,6 +13,8 @@ import ru.o0000q.ratealbumservice.service.AlbumService;
 import ru.o0000q.ratealbumservice.service.UserService;
 import ru.o0000q.ratealbumservice.service.UsersRatingService;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class RateAlbumServiceApplication {
     public static void main(String[] args) {
@@ -21,11 +23,11 @@ public class RateAlbumServiceApplication {
         UserService userService = context.getBean(UserService.class);
         UsersRatingService usersRatingService = context.getBean(UsersRatingService.class);
         User user = userService.getUserById(1L);
-        Album album = albumService.getAlbumById(36L);
+        Optional<Album> album = albumService.getAlbumById(36L);
         UsersRating usersRating = UsersRating.builder()
                 .rate(7)
                 .build();
-        usersRating.setAlbum(album);
+        usersRating.setAlbum(album.get());
         usersRating.setUser(user);
         usersRatingService.saveUsersRating(usersRating);
     }

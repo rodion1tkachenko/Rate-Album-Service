@@ -7,6 +7,8 @@ import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.repository.AlbumRepository;
 import ru.o0000q.ratealbumservice.repository.SingerRepository;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -20,7 +22,7 @@ public class AlbumService {
         albumRepository.saveAlbum(album);
     }
 
-    public Album getAlbumById(Long id) {
+    public Optional<Album> getAlbumById(Long id) {
         return albumRepository.getAlbumById(id);
     }
 }
