@@ -17,10 +17,10 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.getUserById(id);
+        return userRepository.getUserById(id).get();
     }
 
     public User getUserByNickname(String nickname) {
-        return userRepository.getUserByNickname(nickname);
+        return userRepository.getUserByNickname(nickname).get();
     }
 }
