@@ -2,12 +2,32 @@ package ru.o0000q.ratealbumservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.o0000q.ratealbumservice.entity.Album;
+import ru.o0000q.ratealbumservice.entity.Singer;
+import ru.o0000q.ratealbumservice.entity.User;
+import ru.o0000q.ratealbumservice.entity.UsersRating;
+import ru.o0000q.ratealbumservice.repository.AlbumRepository;
+import ru.o0000q.ratealbumservice.repository.SingerRepository;
+import ru.o0000q.ratealbumservice.repository.UserRepository;
+import ru.o0000q.ratealbumservice.service.AlbumService;
+import ru.o0000q.ratealbumservice.service.UserService;
+import ru.o0000q.ratealbumservice.service.UsersRatingService;
 
 @SpringBootApplication
 public class RateAlbumServiceApplication {
-
     public static void main(String[] args) {
-        SpringApplication.run(RateAlbumServiceApplication.class, args);
+        var context = SpringApplication.run(RateAlbumServiceApplication.class, args);
+        AlbumService albumService = context.getBean(AlbumService.class);
+        UserService userService = context.getBean(UserService.class);
+        UsersRatingService usersRatingService = context.getBean(UsersRatingService.class);
+        User user = userService.getUserById(1L);
+        Album album = albumService.getAlbumById(36L);
+        UsersRating usersRating = UsersRating.builder()
+                .rate(7)
+                .build();
+        usersRating.setAlbum(album);
+        usersRating.setUser(user);
+        usersRatingService.saveUsersRating(usersRating);
     }
 
 }

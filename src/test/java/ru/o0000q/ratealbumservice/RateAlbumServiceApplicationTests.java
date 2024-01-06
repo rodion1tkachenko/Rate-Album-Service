@@ -10,4 +10,5 @@ class RateAlbumServiceApplicationTests {
     void contextLoads() {
     }
 
+
 }
