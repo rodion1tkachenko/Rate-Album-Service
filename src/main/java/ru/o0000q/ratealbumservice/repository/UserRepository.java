@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     List<User> getUsersByRole(Role role);
     @Modifying
     @Query("update User u " +
-            "set u.password =?1, u.login=?2,u.nickname=?3 where u.id=?2")
+            "set u.password =?1, u.login=?2,u.nickname=?3 where u.id=?4")
     void setUserInfo(String password,String login,String nickname, Long id);
 
     void deleteById(Long id);

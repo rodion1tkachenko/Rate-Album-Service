@@ -36,6 +36,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 
     boolean deleteAlbumById(Long id);
     boolean deleteAlbumByTitle(String title);
-    int countAll();
+//    int countAll();
 
 }
