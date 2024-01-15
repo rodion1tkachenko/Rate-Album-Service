@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
+//@Builder
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,6 +21,7 @@ public class Album {
     private byte[] cover;
     private String genre;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
+//    @Builder.Default
     private Singer singer;
 
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)

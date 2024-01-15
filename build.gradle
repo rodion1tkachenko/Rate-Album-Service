@@ -10,6 +10,9 @@ version = '0.0.1-SNAPSHOT'
 java {
     sourceCompatibility = '17'
 }
+ext {
+    set('testcontainers.version', "1.19.3")
+}
 
 configurations {
     compileOnly {
@@ -30,13 +33,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation 'org.testcontainers:postgresql'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+    //ttps://mvnrepository.com/artifact/org.mapstruct/mapstruct
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+//    implementation 'org.hibernate:hibernate-core:6.3.1.Final'
+//// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+//    implementation 'org.hibernate:hibernate-entitymanager:5.6.15.Final'
+
 
 }
 

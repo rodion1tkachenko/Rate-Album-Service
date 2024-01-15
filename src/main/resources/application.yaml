@@ -4,3 +4,6 @@ spring:
     password: postgres
     url: jdbc:postgresql://localhost:32768/postgres
     driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always

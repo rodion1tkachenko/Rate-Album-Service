@@ -9,6 +9,8 @@ import ru.o0000q.ratealbumservice.dto.UserDto;
 import ru.o0000q.ratealbumservice.entity.User;
 import ru.o0000q.ratealbumservice.repository.UserRepository;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -28,8 +30,8 @@ public class UserService {
         userRepository.saveUser(user);
     }
 
-    public User getUserById(Long id) {
-        return userRepository.getUserById(id).get();
+    public Optional<User> getUserById(Long id) {
+        return userRepository.getUserById(id);
     }
 
     public User getUserByNickname(String nickname) {
