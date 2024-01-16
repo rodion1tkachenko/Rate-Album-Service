@@ -28,31 +28,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceIT extends IntegrationTestBase {
     @Autowired
     private UserService userService;
-
-//    @LocalServerPort
-//    private Integer port;
-
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
-            "postgres:latest"
-    );
-
-    @BeforeAll
-    static void beforeAll() {
-        postgres.start();
-    }
-
-    @AfterAll
-    static void afterAll() {
-        postgres.stop();
-    }
-
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
-    }
-
     @Test
     void serviceShouldSaveUser() {
         userService.saveUser(User.builder()
