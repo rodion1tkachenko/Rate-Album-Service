@@ -13,7 +13,6 @@ create table if not exists "users"
     role     varchar(64)
 );
 
-
 create table if not exists album
 (
     id        bigserial primary key,

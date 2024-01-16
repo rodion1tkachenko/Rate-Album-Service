@@ -6,6 +6,7 @@ create table if not exists customers
     primary key (id),
     UNIQUE (email)
 );
+
 create table if not exists singer
 (
     id   bigserial primary key,

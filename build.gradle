@@ -41,12 +41,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    //ttps://mvnrepository.com/artifact/org.mapstruct/mapstruct
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
-//    implementation 'org.hibernate:hibernate-core:6.3.1.Final'
-//// https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-//    implementation 'org.hibernate:hibernate-entitymanager:5.6.15.Final'
+
 
 
 }

@@ -1,44 +1,37 @@
 package ru.o0000q.ratealbumservice.integration.service;
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.testcontainers.containers.PostgreSQLContainer;
 import ru.o0000q.ratealbumservice.entity.User;
-import ru.o0000q.ratealbumservice.fuctests.Customer;
-import ru.o0000q.ratealbumservice.fuctests.CustomerRepository;
+import ru.o0000q.ratealbumservice.entity.enums.Role;
 import ru.o0000q.ratealbumservice.integration.IntegrationTestBase;
 import ru.o0000q.ratealbumservice.service.UserService;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class UserServiceIT extends IntegrationTestBase {
+    private static User USER_VASYA = User.builder()
+            .login("vasya123")
+            .nickname("vasre")
+            .password("123")
+            .role(Role.USER)
+            .build();
     @Autowired
     private UserService userService;
+
     @Test
-    void serviceShouldSaveUser() {
-        userService.saveUser(User.builder()
-                        .login("vasya123")
-                        .nickname("vasre")
-                        .password("123")
-                .build());
+    void methodShouldSaveUser() {
+        userService.saveUser(USER_VASYA);
         User user = userService.getUserByNickname("vasre");
         assertAll(
-                ()->assertEquals(user.getNickname(),"vasre"),
-                ()->assertEquals(user.getPassword(),"123")
+                () -> assertEquals(user.getNickname(), "vasre"),
+                () -> assertEquals(user.getPassword(), "123")
 
         );
     }

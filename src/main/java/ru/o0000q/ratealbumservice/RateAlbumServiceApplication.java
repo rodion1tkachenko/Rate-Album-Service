@@ -19,12 +19,6 @@ import java.util.Optional;
 public class RateAlbumServiceApplication {
     public static void main(String[] args) {
         var context = SpringApplication.run(RateAlbumServiceApplication.class, args);
-        UserService userService = context.getBean(UserService.class);
-        userService.saveUser(User.builder()
-                        .login("123")
-                        .nickname("123")
-                        .password("123")
-                .build());
     }
 
 }
