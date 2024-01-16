@@ -1,8 +1,10 @@
 package ru.o0000q.ratealbumservice.integration.annotation;
 
+import org.hibernate.generator.internal.GeneratedAlwaysGeneration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import ru.o0000q.ratealbumservice.RateAlbumServiceApplication;
 import ru.o0000q.ratealbumservice.RateAlbumServiceApplicationTests;
 
 import java.lang.annotation.ElementType;
@@ -12,9 +14,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @Transactional
-@SpringBootTest(classes = RateAlbumServiceApplicationTests.class)
+@SpringBootTest(classes= RateAlbumServiceApplicationTests.class)
 public @interface IT {
 }
 

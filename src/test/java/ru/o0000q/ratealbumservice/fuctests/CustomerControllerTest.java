@@ -61,6 +61,5 @@ class CustomerControllerTest {
         );
         customerRepository.saveAll(customers);
 
-
     }
 }

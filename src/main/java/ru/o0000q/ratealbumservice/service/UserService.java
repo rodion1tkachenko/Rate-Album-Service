@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class UserService {
+public class  UserService {
     private final UserRepository userRepository;
 
 

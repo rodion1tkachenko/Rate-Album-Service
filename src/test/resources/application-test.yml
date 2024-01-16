@@ -2,6 +2,11 @@ spring:
   datasource:
     password: test
     username: test
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 #  jpa:
 #    properties.hibernate:
 #      hbm2ddl.auto: validate

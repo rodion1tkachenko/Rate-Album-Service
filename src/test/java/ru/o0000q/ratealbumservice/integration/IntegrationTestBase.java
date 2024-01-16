@@ -17,13 +17,13 @@ import ru.o0000q.ratealbumservice.integration.annotation.IT;
         "classpath:sql/fill_database.sql"
 })
 public abstract class IntegrationTestBase {
-    private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres");
-    @BeforeAll
-    static void runContainer() {
-        container.start();
-    }
-    @DynamicPropertySource
-    static void postgresProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", container::getJdbcUrl);
-    }
+//    private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres");
+//    @BeforeAll
+//    static void runContainer() {
+//        container.start();
+//    }
+//    @DynamicPropertySource
+//    static void postgresProperties(DynamicPropertyRegistry registry) {
+//        registry.add("spring.datasource.url", container::getJdbcUrl);
+//    }
 }

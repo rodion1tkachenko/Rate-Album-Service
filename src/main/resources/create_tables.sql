@@ -3,7 +3,7 @@ create table if not exists singer(
      name varchar(128) unique not null
     );
 
-create table if not exists users (
+create table if not exists "users" (
      id bigserial primary key,
      login varchar(128) unique not null,
     password varchar(64) UNIQUE not null,
@@ -26,4 +26,17 @@ create table  if not exists users_rating(
         user_id bigint,
         album_id bigint,
         rate int check (rate>=0 and rate<=10)
-    )
+    );
+INSERT INTO users (login, password, nickname, role)
+VALUES ('user1', 'password1', 'nickname1', 'role1'),
+       ('user2', 'password2', 'nickname2', 'role2');
+
+-- Вставка тестовых данных в таблицу album
+INSERT INTO album (title, singer_id, genre)
+VALUES ('Album1', 1, 'Genre1'),
+       ('Album2', 2, 'Genre2');
+
+-- Вставка тестовых данных в таблицу users_rating
+INSERT INTO users_rating (user_id, album_id, rate)
+VALUES (1, 1, 5),
+       (2, 2, 8);
