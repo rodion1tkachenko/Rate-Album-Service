@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.containers.PostgreSQLContainer;
 import ru.o0000q.ratealbumservice.integration.annotation.IT;
 
-
 @IT
 @Sql({
         "classpath:sql/fill_database.sql"
@@ -36,3 +35,4 @@ public abstract class IntegrationTestBase {
         registry.add("spring.datasource.password", postgres::getPassword);
     }
 }
+
