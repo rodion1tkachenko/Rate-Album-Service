@@ -4,8 +4,8 @@ VALUES (1, 'Singer1'),
 SELECT SETVAL('singer_id_seq', (SELECT MAX(id) FROM singer));
 
 INSERT INTO users (id, login, password, nickname, role)
-VALUES (1, 'user1', 'password1', 'nickname1', 'role1'),
-       (2, 'user2', 'password2', 'nickname2', 'role2');
+VALUES (1, 'user1', 'password1', 'nickname1', 'USER'),
+       (2, 'user2', 'password2', 'nickname2', 'ADMIN');
 SELECT SETVAL('users_id_seq', (SELECT MAX(id) FROM users));
 
 INSERT INTO album (id, title, singer_id, genre)

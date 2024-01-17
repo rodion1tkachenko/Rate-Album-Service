@@ -1,14 +1,14 @@
 package ru.o0000q.ratealbumservice.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.o0000q.ratealbumservice.dto.UserDto;
 import ru.o0000q.ratealbumservice.entity.User;
+import ru.o0000q.ratealbumservice.mapper.UserMapperImp;
 import ru.o0000q.ratealbumservice.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class  UserService {
     private final UserRepository userRepository;
-
+    private final UserMapperImp userMapper;
 
     public void setUserInfo(UserDto userDto) {
         userRepository.setUserInfo(userDto.getPassword(), userDto.getLogin(), userDto.getPassword(), userDto.getId());
@@ -27,14 +27,21 @@ public class  UserService {
     }
 
     public void saveUser(User user) {
-        userRepository.saveUser(user);
+        if (user == null) {
+            throw new NullPointerException("You are trying to save null");
+        }
+        userRepository.save(user);
     }
 
     public Optional<User> getUserById(Long id) {
         return userRepository.getUserById(id);
     }
 
-    public User getUserByNickname(String nickname) {
-        return userRepository.getUserByNickname(nickname).get();
+    public Optional<User> getUserByNickname(String nickname) {
+        return userRepository.getUserByNickname(nickname);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }
