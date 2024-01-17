@@ -32,7 +32,7 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     @Modifying
     @Query("update Album a "+
             "set a.singer = ?1 where a.id = ?2")
-    void setAlbumCover(Singer singer, Long id);
+    void setAlbumSinger(Singer singer, Long id);
 
     boolean deleteAlbumById(Long id);
     boolean deleteAlbumByTitle(String title);

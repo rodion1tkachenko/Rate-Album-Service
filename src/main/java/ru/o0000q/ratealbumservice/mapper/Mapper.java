@@ -1,10 +1,7 @@
 package ru.o0000q.ratealbumservice.mapper;
 
-public interface Mapper<F, T> {
+public interface Mapper<Entity, Dto> {
 
-    F map(T object);
-
-    default T map(F fromObject, T toObject) {
-        return toObject;
-    }
+    Dto fromEntityToDto(Entity object);
+    Entity fromDtoToEntity(Dto object);
 }

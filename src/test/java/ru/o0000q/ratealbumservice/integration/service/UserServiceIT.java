@@ -57,14 +57,11 @@ public class UserServiceIT extends IntegrationTestBase {
                 user -> assertEquals(user, USER_VASYA)
         );
     }
-
     @Test
     void methodSaveShouldThrowNpeWithNullArgument() {
         assertThrows(NullPointerException.class,
                 () -> userService.saveUser(null));
-
     }
-
     @Test
     void methodShouldSaveUserWithExistingId() {
         userService.saveUser(USER_WITH_EXIST_ID);
