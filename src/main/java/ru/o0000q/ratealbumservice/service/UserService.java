@@ -19,7 +19,10 @@ public class  UserService {
     private final UserMapperImp userMapper;
 
     public void setUserInfo(UserDto userDto) {
-        userRepository.setUserInfo(userDto.getPassword(), userDto.getLogin(), userDto.getPassword(), userDto.getId());
+        userRepository.setUserInfo(userDto.getPassword(),
+                userDto.getLogin(),
+                userDto.getNickname(),
+                userDto.getId());
     }
 
     public void deleteById(Long id) {

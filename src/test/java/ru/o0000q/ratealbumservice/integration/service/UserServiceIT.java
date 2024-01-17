@@ -45,6 +45,9 @@ public class UserServiceIT extends IntegrationTestBase {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapperImp userMapper;
+
     @Test
     void methodShouldSaveUser() {
         userService.saveUser(USER_VASYA);
@@ -67,9 +70,13 @@ public class UserServiceIT extends IntegrationTestBase {
         userService.saveUser(USER_WITH_EXIST_ID);
         Optional<User> maybeUserAfterSave = userService.getUserById(1L);
         assertTrue(maybeUserAfterSave.isPresent());
-        maybeUserAfterSave.ifPresent(userFromDB -> {
+        maybeUserAfterSave.ifPresent(actualUser -> {
             assertAll(
-                    () -> assertEquals(USER_WITH_EXIST_ID, userFromDB)
+                    () -> assertEquals(USER_WITH_EXIST_ID.getId(), actualUser.getId()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getRole(), actualUser.getRole()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getNickname(), actualUser.getNickname()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getPassword(), actualUser.getPassword()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getLogin(), actualUser.getLogin())
 
             );
         });
@@ -124,6 +131,36 @@ public class UserServiceIT extends IntegrationTestBase {
     @Test
     void findAllShouldHasCorrectUser() {
         assertTrue(userService.findAll().contains(USER_FROM_DATABASE));
+    }
+    @Test
+    void methodShouldNotUpdateUserIfEntityIsNotInDatabase(){
+        userService.setUserInfo(userMapper
+                .fromUserToUserDto(USER_VASYA));
+        Optional<User> maybeUser = userService
+                .getUserByNickname(USER_VASYA.getNickname());
+        assertFalse(maybeUser.isPresent());
+    }
+    @Test
+    void methodUpdateShouldSuccessfulUpdateUserFromDatabase(){
+        userService.setUserInfo(userMapper
+                .fromUserToUserDto(USER_WITH_EXIST_ID));
+        Optional<User> maybeUser = userService
+                .getUserByNickname(USER_WITH_EXIST_ID.getNickname());
+        assertTrue(maybeUser.isPresent());
+        maybeUser.ifPresent(actualUser->{
+            assertAll(
+                    () -> assertEquals(USER_WITH_EXIST_ID.getId(), actualUser.getId()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getRole(), actualUser.getRole()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getNickname(), actualUser.getNickname()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getPassword(), actualUser.getPassword()),
+                    () -> assertEquals(USER_WITH_EXIST_ID.getLogin(), actualUser.getLogin())
+            );
+        });
+    }
+    @Test
+    void methodShouldFailBecauseArgumentIsNull(){
+        assertThrows(Exception.class,
+                ()->userService.setUserInfo(null));
     }
 
 
