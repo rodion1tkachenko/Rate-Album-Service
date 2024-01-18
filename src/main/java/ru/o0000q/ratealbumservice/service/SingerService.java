@@ -30,13 +30,12 @@ public class SingerService {
                         .getSingerByName(name)));
     }
 
-    public Optional<SingerDto> getSingerById(Long id) {
+    public Optional<Singer> getSingerById(Long id) {
         Singer singer = singerRepository.getSingerById(id);
         if(singer==null){
             return Optional.empty();
         }
-        return Optional.of(singerMapper
-                .fromEntityToDto(singer));
+        return Optional.of(singer);
     }
 
     public List<SingerDto> findAll() {

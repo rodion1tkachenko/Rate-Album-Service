@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.o0000q.ratealbumservice.dto.SingerDto;
+import ru.o0000q.ratealbumservice.entity.Singer;
 import ru.o0000q.ratealbumservice.entity.User;
 import ru.o0000q.ratealbumservice.integration.IntegrationTestBase;
 import ru.o0000q.ratealbumservice.mapper.SingerMapper;
@@ -51,7 +52,7 @@ class SingerServiceIT extends IntegrationTestBase {
     @Test
     void methodShouldSaveSingerWithExistingId() {
         singerService.save(SINGER_WITH_EXISTING_ID);
-        Optional<SingerDto> maybeSingerAfterSave = singerService.getSingerById(1L);
+        Optional<Singer> maybeSingerAfterSave = singerService.getSingerById(1L);
         assertTrue(maybeSingerAfterSave.isPresent());
         maybeSingerAfterSave.ifPresent(actualSinger -> {
             assertAll(
@@ -64,7 +65,7 @@ class SingerServiceIT extends IntegrationTestBase {
     }
     @Test
     void getSingerByIdShouldReturnAccurateSinger() {
-        Optional<SingerDto> actualResult = singerService.getSingerById(2L);
+        Optional<Singer> actualResult = singerService.getSingerById(2L);
         assertTrue(actualResult.isPresent());
         actualResult.ifPresent(singer ->
                 assertAll(
@@ -75,8 +76,8 @@ class SingerServiceIT extends IntegrationTestBase {
     }
     @Test
     void twoGetSingerByIdInvokeShouldReturnDifferentSingers() {
-        Optional<SingerDto> singer1 = singerService.getSingerById(1L);
-        Optional<SingerDto> singer2 = singerService.getSingerById(2L);
+        Optional<Singer> singer1 = singerService.getSingerById(1L);
+        Optional<Singer> singer2 = singerService.getSingerById(2L);
         assertNotEquals(singer1, singer2);
     }
     @Test
@@ -87,7 +88,7 @@ class SingerServiceIT extends IntegrationTestBase {
     }
     @Test
     void getSingerByIdShouldReturnEmptyOptionalIfSingerIsNotInDatabase() {
-        Optional<SingerDto> maybeSinger = singerService.getSingerById(3L);
+        Optional<Singer> maybeSinger = singerService.getSingerById(3L);
         assertFalse(maybeSinger.isPresent());
     }
 
@@ -100,7 +101,7 @@ class SingerServiceIT extends IntegrationTestBase {
     @Test
     void deleteByIdShouldDeleteSingerWithIdOne() {
         singerService.deleteById(1L);
-        Optional<SingerDto> maybeSinger = singerService.getSingerById(1L);
+        Optional<Singer> maybeSinger = singerService.getSingerById(1L);
         assertFalse(maybeSinger.isPresent());
     }
     @Test

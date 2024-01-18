@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.o0000q.ratealbumservice.dto.AlbumDto;
 import ru.o0000q.ratealbumservice.entity.Album;
+import ru.o0000q.ratealbumservice.mapper.AlbumMapper;
 import ru.o0000q.ratealbumservice.repository.AlbumRepository;
 import ru.o0000q.ratealbumservice.repository.SingerRepository;
 
@@ -33,8 +33,16 @@ public class AlbumService {
         return albumRepository.getAlbumByTitle(string);
     }
 
-    public boolean deleteAlbumById(Long id) {
-        return albumRepository.deleteAlbumById(id);
+
+    public void setAlbumInfo(Album album) {
+        albumRepository.setAlbumInfo(album.getTitle(),
+                album.getGenre(),
+                album.getCover(),
+                album.getId());
+    }
+
+    public void deleteAlbumById(Long id) {
+        albumRepository.deleteAlbumById(id);
     }
 
 

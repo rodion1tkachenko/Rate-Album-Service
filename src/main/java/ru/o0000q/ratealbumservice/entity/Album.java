@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @EqualsAndHashCode(exclude = {"singer", "usersRatings"})
 @ToString(exclude = {"singer", "usersRatings"})
 public class Album {
@@ -21,11 +22,10 @@ public class Album {
     private byte[] cover;
     private String genre;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
-//    @Builder.Default
     private Singer singer;
 
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
-//    @Builder.Default
+    @Builder.Default
     private List<UsersRating>usersRatings=new ArrayList<>();
 
     public void setSinger(Singer singer) {
