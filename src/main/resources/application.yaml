@@ -12,3 +12,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  security:
+    filter:
+      dispatcher-types: request,async,error,forward,include
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            security: INFO
