@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Registration</title>
 </head>
 <body>
-<h2>Регистрация нового пользователя</h2>
-<form action="#" th:action="@{/register}" th:object="${user}" method="post">
-    <p>Login: <input type="text" th:field="*{login}"></p>
-    <p>Password: <input type="password" th:field="*{password}"></p>
-    <p>Nickname: <input type="text" th:field="*{nickname}"></p>
-    <p>Role:
-        <select th:field="*{role}">
-            <option th:each="role : ${T(Role).values()}" th:value="${role}" th:text="${role}"></option>
-        </select>
-    </p>
-    <input type="submit" value="Register">
+<h2>Registration Form</h2>
+<form th:action="@{/registration}" enctype="multipart/form-data" method="post" th:object="${user}">
+    <div>
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" required>
+    </div>
+    <button type="submit">Register</button>
 </form>
 </body>
 </html>

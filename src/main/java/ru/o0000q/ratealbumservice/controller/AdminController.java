@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.o0000q.ratealbumservice.service.UserService;
 
 @Controller
+@RequestMapping("/admin")
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserAccountController {
+public class AdminController {
     private final UserService userService;
-    @GetMapping("/account/{id}")
-    public String getAccountPage(@PathVariable String id,
-                                 Model model){
-        setAccountAttribute(id, model);
-        return "account";
+    @GetMapping("/{id}")
+    public String welcomePage(@PathVariable String id,
+                              Model model){
+        setAdminAttribute(id, model);
+        return "admin";
     }
 
-    private void setAccountAttribute(String id, Model model) {
-        model.addAttribute("account",
+    private void setAdminAttribute(String id, Model model) {
+        model.addAttribute("admin",
                 userService.getUserById(Long.valueOf(id)).get());
     }
 }
