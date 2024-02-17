@@ -18,8 +18,6 @@ import java.util.Optional;
 public class AlbumService {
     private final AlbumRepository albumRepository;
     private final SingerRepository singerRepository;
-
-
     public void saveAlbum(Album album) {
         singerRepository.save(album.getSinger());
         albumRepository.saveAlbum(album);

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Album</title>
+</head>
+<body>
+<h1>Add New Album</h1>
+<form action="#" th:action="@{/admin/addAlbum}" th:object="${album}" method="post">
+    <label>Title:</label>
+    <div>
+        <label for="title">title:</label>
+        <input type="text" id="title" name="title" th:field="*{title}" required>
+    </div>
+    <div>
+        <label for="genre">genre</label>
+        <input type="text" id="genre" name="genre" th:field="*{genre}" required>
+    </div>
+    <div>
+        <label for="singer">singer:</label>
+        <!-- Здесь используем th:field для установки значения в объект "singer" -->
+        <input type="text" id="singer" name="singer" th:field="*{singer.name}" required>
+    </div>
+    <button type="submit">Add Album</button>
+</form>
+</body>
+</html>

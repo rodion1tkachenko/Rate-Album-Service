@@ -20,5 +20,4 @@ public class RateAlbumServiceApplication {
     public static void main(String[] args) {
         var context = SpringApplication.run(RateAlbumServiceApplication.class, args);
     }
-
 }
