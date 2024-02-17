@@ -6,11 +6,12 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
+//@Builder
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @EqualsAndHashCode(exclude = {"singer", "usersRatings"})
 @ToString(exclude = {"singer", "usersRatings"})
 public class Album {
@@ -24,7 +25,7 @@ public class Album {
     private Singer singer;
 
     @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
-//    @Builder.Default
+    @Builder.Default
     private List<UsersRating>usersRatings=new ArrayList<>();
 
     public void setSinger(Singer singer) {

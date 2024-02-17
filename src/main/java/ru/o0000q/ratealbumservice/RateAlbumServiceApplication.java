@@ -19,17 +19,5 @@ import java.util.Optional;
 public class RateAlbumServiceApplication {
     public static void main(String[] args) {
         var context = SpringApplication.run(RateAlbumServiceApplication.class, args);
-        AlbumService albumService = context.getBean(AlbumService.class);
-        UserService userService = context.getBean(UserService.class);
-        UsersRatingService usersRatingService = context.getBean(UsersRatingService.class);
-        User user = userService.getUserById(1L);
-        Optional<Album> album = albumService.getAlbumById(36L);
-        UsersRating usersRating = UsersRating.builder()
-                .rate(7)
-                .build();
-        usersRating.setAlbum(album.get());
-        usersRating.setUser(user);
-        usersRatingService.saveUsersRating(usersRating);
     }
-
 }

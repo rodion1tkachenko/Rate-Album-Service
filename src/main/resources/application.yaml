@@ -1,6 +1,23 @@
 spring:
   datasource:
     username: postgres
-    password: postgres
-    url: jdbc:postgresql://localhost:32768/postgres
+    password: 229rodi4))228
+    url: jdbc:postgresql://localhost:5432/postgres2
     driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    filter:
+      dispatcher-types: request,async,error,forward,include
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure:
+            security: INFO

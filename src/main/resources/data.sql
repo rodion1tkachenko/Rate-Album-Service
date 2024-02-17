@@ -4,7 +4,7 @@ create table if not exists singer
     name varchar(128) unique not null
 );
 
-create table if not exists "users"
+create table if not exists users
 (
     id       bigserial primary key,
     login    varchar(128) unique not null,
@@ -12,6 +12,7 @@ create table if not exists "users"
     nickname varchar(64),
     role     varchar(64)
 );
+
 
 create table if not exists album
 (

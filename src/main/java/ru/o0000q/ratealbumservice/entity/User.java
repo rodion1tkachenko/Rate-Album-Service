@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users")
+@Table(name = "users", schema = "public")
 @EqualsAndHashCode(exclude = "usersRatings")
 @ToString(exclude = "usersRatings")
 public class User {
@@ -22,9 +22,10 @@ public class User {
     private String login;
     private String password;
     private String nickname;
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    @Builder.Default
+    @Builder.Default
     private List<UsersRating>usersRatings=new ArrayList<>();
 }
 
