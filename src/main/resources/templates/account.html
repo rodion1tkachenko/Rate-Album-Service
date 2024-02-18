@@ -8,5 +8,24 @@
 <body>
 <h2>Account Information</h2>
 <p>Your Account Number: <span th:text="${account.id}"></span></p>
+
+<h3>Unrated Albums:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Singer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем Thymeleaf для вывода списка непроцененных альбомов -->
+    <tr th:each="album : ${unratedAlbums}">
+        <td th:text="${album.title}"></td>
+        <td th:text="${album.genre}"></td>
+        <td th:text="${album.singer.name}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
