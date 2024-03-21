@@ -19,6 +19,9 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     Optional<Album> getAlbumByTitle(String string);
     List<Album> findAllBySinger(Singer singer);
     Optional<Album>getAlbumByTitleAndSingerName(String title,String singerName);
+//    @Modifying
+//    @Query("select a from Album as a")
+//    List<String>findAllAlbums();
 
     @Modifying
     @Query("update Album a "+

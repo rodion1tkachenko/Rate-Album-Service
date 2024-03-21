@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rate Album</title>
+</head>
+<body>
+<h2>Rate Album</h2>
+<div th:if="${album}">
+    <h3 th:text="'Album: ' + ${album.title}"></h3>
+    <form th:action="@{'/user/account/' + ${id} + '/rateAlbum/' + ${albumId}}" method="post">
+        <input type="hidden" name="albumTitle" th:value="${album.title}" />
+        <label for="rate">Rate (1-10):</label>
+        <input type="number" id="rate" name="rate" min="1" max="10" required />
+        <button type="submit">Send</button>
+    </form>
+</div>
+<div th:unless="${album}">
+    <p>No album found.</p>
+</div>
+</body>
+</html>
