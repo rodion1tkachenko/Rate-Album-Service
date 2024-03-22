@@ -26,8 +26,8 @@ public class MainPageController {
     }
 
     private void setBestAlbumAttribute(Model model) {
-        AlbumRating bestAlbum = albumRatingService.getBestAlbum();
-        model.addAttribute("album",bestAlbum);
+        AlbumRatingDto albumRatingDto = albumRatingService.getBestAlbum();
+        model.addAttribute("album",albumRatingDto);
     }
 
 

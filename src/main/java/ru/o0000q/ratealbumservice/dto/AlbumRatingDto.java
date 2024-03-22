@@ -6,6 +6,9 @@ import lombok.Data;
 @Data
 @Builder
 public class AlbumRatingDto {
-    private Long id;
+    private Long albumId;
+    private String albumName;
+    private Integer numberOfRatings;
+
     private Double averageRating;
 }

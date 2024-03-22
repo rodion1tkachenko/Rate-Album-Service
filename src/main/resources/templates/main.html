@@ -7,7 +7,7 @@
 <body>
 <h1>Best Album</h1>
 <div th:if="${album}">
-    <p>ID альбома: <span th:text="${album.id    }"></span></p>
+    <p>Альбом: <span th:text="${album.albumName}"></span></p>
     <p>Средний рейтинг: <span th:text="${album.averageRating}"></span></p>
 </div>
 <div th:unless="${album}">

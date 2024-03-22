@@ -28,10 +28,16 @@ public class AlbumService {
     }
 
     public void saveAlbum(Album album) {
+
         singerRepository.save(album.getSinger());
         albumRepository.saveAlbum(album);
     }
-    public List<Album> getUnratedAlbumsByUserId(Long id){
+
+    private boolean isSingerExistsInDB(Album album) {
+        return singerRepository.getSingerByName(album.getSinger().getName()) != null;
+    }
+
+    public List<Album> getUnratedAlbumsByUserId(Long id) {
         return usersRatingService.getAllRatedAlbumsByUserId(id);
     }
 
