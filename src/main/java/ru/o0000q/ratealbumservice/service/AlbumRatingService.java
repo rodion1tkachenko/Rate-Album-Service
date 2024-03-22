@@ -16,4 +16,8 @@ public class AlbumRatingService {
                         .album(album)
                         .build());
     }
+
+    public AlbumRating getBestAlbum() {
+        return albumRatingRepository.findBestAlbum();
+    }
 }

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.o0000q.ratealbumservice.dto.AlbumRatingDto;
 import ru.o0000q.ratealbumservice.dto.ICommentAverageRate;
+import ru.o0000q.ratealbumservice.entity.AlbumRating;
+import ru.o0000q.ratealbumservice.service.AlbumRatingService;
 import ru.o0000q.ratealbumservice.service.UsersRatingService;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/")
 public class MainPageController {
-    private final UsersRatingService usersRatingService;
+   private final AlbumRatingService albumRatingService;
     @GetMapping
     public String mainPage(Model model){
         setBestAlbumAttribute(model);
@@ -24,7 +26,9 @@ public class MainPageController {
     }
 
     private void setBestAlbumAttribute(Model model) {
-//        List<AlbumRatingDto> bestAlbum = usersRatingService.getBestAlbums();
-//        model.addAttribute(bestAlbum);
+        AlbumRating bestAlbum = albumRatingService.getBestAlbum();
+        model.addAttribute("album",bestAlbum);
     }
+
+
 }
