@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.o0000q.ratealbumservice.entity.Album;
+import ru.o0000q.ratealbumservice.service.AlbumRatingService;
 import ru.o0000q.ratealbumservice.service.AlbumService;
 import ru.o0000q.ratealbumservice.service.UserService;
 
@@ -14,6 +15,7 @@ import ru.o0000q.ratealbumservice.service.UserService;
 public class AdminController {
     private final UserService userService;
     private final AlbumService albumService;
+    private final AlbumRatingService albumRatingService;
     
     @GetMapping("/{id}")
     public String welcomePage(@PathVariable String id,
@@ -29,6 +31,7 @@ public class AdminController {
     @PostMapping("/addAlbum")
     public String addNewAlbum(@ModelAttribute Album album){
         albumService.saveAlbum(album);
+        albumRatingService.save(album);
         return "admin/addAlbum";
     }
 

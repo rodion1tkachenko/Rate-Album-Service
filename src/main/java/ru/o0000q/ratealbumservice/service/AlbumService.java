@@ -9,6 +9,7 @@ import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.mapper.AlbumMapper;
 import ru.o0000q.ratealbumservice.repository.AlbumRepository;
 import ru.o0000q.ratealbumservice.repository.SingerRepository;
+import ru.o0000q.ratealbumservice.repository.UserRatingRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,8 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
     private final SingerRepository singerRepository;
 
+    private final UsersRatingService usersRatingService;
+
     public List<Album> findAll() {
         return albumRepository.findAll();
     }
@@ -27,6 +30,9 @@ public class AlbumService {
     public void saveAlbum(Album album) {
         singerRepository.save(album.getSinger());
         albumRepository.saveAlbum(album);
+    }
+    public List<Album> getUnratedAlbumsByUserId(Long id){
+        return usersRatingService.getAllRatedAlbumsByUserId(id);
     }
 
     public Optional<Album> getAlbumById(Long id) {

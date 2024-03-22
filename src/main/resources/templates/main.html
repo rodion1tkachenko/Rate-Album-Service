@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<h1>BEST ALBUM</h1>
+<div th:if="${bestAlbums != null and not #lists.isEmpty(bestAlbums)}">
+    <p>ID альбома: <span th:text="${bestAlbums[0].idComment}"></span></p>
+    <p>Средняя оценка: <span th:text="${bestAlbums[0].averageComment}"></span></p>
+</div>
+<div th:unless="${bestAlbums != null and not #lists.isEmpty(bestAlbums)}">
+    <p>Информация об альбоме недоступна.</p>
+</div>
+</body>
+</html>

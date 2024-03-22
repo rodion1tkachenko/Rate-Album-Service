@@ -2,7 +2,7 @@ spring:
   datasource:
     username: postgres
     password: 229rodi4))228
-    url: jdbc:postgresql://localhost:5432/postgres2
+    url: jdbc:postgresql://localhost:32768/postgres
     driver-class-name: org.postgresql.Driver
   sql:
     init:

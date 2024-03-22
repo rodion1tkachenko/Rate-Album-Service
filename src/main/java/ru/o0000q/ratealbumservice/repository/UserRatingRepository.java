@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import ru.o0000q.ratealbumservice.dto.AlbumRatingDto;
+import ru.o0000q.ratealbumservice.dto.ICommentAverageRate;
 import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.entity.User;
 import ru.o0000q.ratealbumservice.entity.UsersRating;
@@ -31,4 +33,14 @@ public interface UserRatingRepository extends JpaRepository<UsersRating,Long> {
             " where u.id =?1")
     List<Album>getDistinctUserId(Long id);
 
+//
+//    @Modifying
+//    @Query("""
+//            select new ru.o0000q.ratealbumservice.dto.AlbumRatingDto (ur.id, avg(ur.id))
+//            from UsersRating as ur
+//            group by ur.id
+//            order by avg (ur)
+//            limit 1
+//            """)
+//    List<AlbumRatingDto> getBestAlbum();
 }

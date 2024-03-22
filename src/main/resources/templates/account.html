@@ -27,5 +27,23 @@
     </tr>
     </tbody>
 </table>
+<h3>Rated Albums:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Singer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем Thymeleaf для вывода списка непроцененных альбомов -->
+    <tr th:each="album : ${ratedAlbums}">
+        <td th:text="${album.title}"></td>
+        <td th:text="${album.genre}"></td>
+        <td th:text="${album.singer.name}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

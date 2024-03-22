@@ -3,12 +3,13 @@ package ru.o0000q.ratealbumservice.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.entity.Singer;
 
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public interface SingerRepository extends JpaRepository<Singer,Long> {
 
     Singer getSingerByName(String name);

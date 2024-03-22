@@ -27,7 +27,12 @@ public class UserAccountController {
                                  Model model) {
         setAccountAttribute(id, model);
         setUnratedAlbumsAttribute(id, model);
+        setRatedAlbumsAttribute(id,model);
         return "account";
+    }
+    private void setRatedAlbumsAttribute(String id, Model model) {
+        model.addAttribute("ratedAlbums",
+                usersRatingService.getAllRatedAlbumsByUserId(Long.valueOf(id)));
     }
 
     @GetMapping("/account/{id}/rateAlbum/{albumId}")
@@ -50,7 +55,7 @@ public class UserAccountController {
         usersRating.setAlbum(albumService.getAlbumById(Long.valueOf(albumId)).get());
         usersRating.setId(null);
         usersRatingService.saveUsersRating(usersRating);
-        return "account";
+        return "main";
     }
 
     private void setUnratedAlbumsAttribute(String id, Model model) {
