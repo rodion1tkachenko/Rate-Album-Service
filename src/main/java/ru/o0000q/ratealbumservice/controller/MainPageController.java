@@ -19,7 +19,8 @@ import java.util.List;
 @RequestMapping("/")
 public class MainPageController {
    private final AlbumRatingService albumRatingService;
-    @GetMapping
+   //TODO: page dont show best album
+   @GetMapping
     public String mainPage(Model model){
         setBestAlbumAttribute(model);
         return "main";

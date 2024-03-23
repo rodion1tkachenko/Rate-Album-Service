@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.o0000q.ratealbumservice.entity.Album;
 import ru.o0000q.ratealbumservice.entity.UsersRating;
+import ru.o0000q.ratealbumservice.service.AlbumRatingService;
 import ru.o0000q.ratealbumservice.service.AlbumService;
 import ru.o0000q.ratealbumservice.service.UserService;
 import ru.o0000q.ratealbumservice.service.UsersRatingService;
@@ -21,6 +22,7 @@ public class UserAccountController {
     private final UserService userService;
     private final UsersRatingService usersRatingService;
     private final AlbumService albumService;
+    private final AlbumRatingService albumRatingService;
 
     @GetMapping("/account/{id}")
     public String getAccountPage(@PathVariable String id,
@@ -46,6 +48,7 @@ public class UserAccountController {
         model.addAttribute("albumId",albumId);
         return "rateAlbum";
     }
+    //TODO: user can rate an album many times
     @PostMapping("/account/{id}/rateAlbum/{albumId}")
     public String rateAlbum(@PathVariable String id,
                             @PathVariable String albumId,
@@ -55,6 +58,7 @@ public class UserAccountController {
         usersRating.setAlbum(albumService.getAlbumById(Long.valueOf(albumId)).get());
         usersRating.setId(null);
         usersRatingService.saveUsersRating(usersRating);
+        albumRatingService.addRate(usersRating);
         return "main";
     }
 

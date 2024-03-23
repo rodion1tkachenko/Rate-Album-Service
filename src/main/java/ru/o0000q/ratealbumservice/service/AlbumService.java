@@ -28,7 +28,7 @@ public class AlbumService {
     }
 
     public void saveAlbum(Album album) {
-
+//TODO: an error when singer already exists
         singerRepository.save(album.getSinger());
         albumRepository.saveAlbum(album);
     }
